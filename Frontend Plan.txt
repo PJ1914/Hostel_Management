@@ -1,0 +1,29 @@
+src/
+├── components/
+│   ├── Auth/
+│   │   ├── Login.js
+│   │   ├── Register.js
+│   │   └── ResetPassword.js
+│   ├── Dashboard/
+│   │   ├── UserDashboard.js
+│   │   └── AdminDashboard.js
+│   ├── Booking/
+│   │   ├── BookingForm.js
+│   │   └── BookingHistory.js
+│   ├── Payment/
+│   │   ├── PaymentForm.js
+│   │   └── PaymentHistory.js
+│   ├── Notification/
+│   │   ├── NotificationCenter.js
+│   │   └── PushNotifications.js
+│   └── Shared/
+│       ├── Navbar.js
+│       └── Footer.js
+├── redux/
+│   ├── actions/
+│   ├── reducers/
+│   ├── store.js
+├── App.js
+├── index.js
+└── styles/
+    └── styles.css

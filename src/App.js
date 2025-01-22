@@ -5,6 +5,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Signin';
 import UserDashboard from './components/Dashboard/User-Dashboard';
 import PaymentForm from './components/Payment/PaymentForm';
+import Notifications from './components/Notification/Notifications';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/dashboard" component={UserDashboard} />
         <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/notifications" component={Notifications} />
       </Switch>
     </Router>
   );
