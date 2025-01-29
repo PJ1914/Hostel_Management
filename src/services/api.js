@@ -16,28 +16,32 @@ api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+// Add response interceptor for debugging
+api.interceptors.response.use((response) => {
+  console.log('API Response:', response);
+  return response;
+}, (error) => {
+  console.error('API Error:', {
+    url: error.config?.url,
+    method: error.config?.method,
+    status: error.response?.status,
+    data: error.response?.data
+  });
+  return Promise.reject(error);
 });
 
 export const login = async (email, password) => {
-  console.log('Login request payload:', { email, password });
   try {
-    if (!email || !password) {
-      throw new Error('Email and password are required');
-    }
-    
-    const response = await api.post('/auth/login', { 
+    const response = await api.post('/api/auth/login', { 
       email: email.trim(),
       password: password.trim()
     });
-    
-    console.log('Login response:', response.data);
     return response;
   } catch (error) {
-    console.error('API Error:', {
-      message: error.response?.data?.message || error.message,
-      status: error.response?.status,
-      data: error.response?.data
-    });
     throw error;
   }
 };
