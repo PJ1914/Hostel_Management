@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { 
+  BrowserRouter, 
+  Switch, 
+  Route, 
+  Redirect 
+} from 'react-router-dom';
 import Navbar from './components/Shared/Navbar';
 import Login from './components/Auth/Login';
 import Signin from './components/Auth/Signin';
@@ -22,7 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <Switch>
         <Route exact path="/login" component={Login} />
@@ -34,7 +39,7 @@ function App() {
           <Redirect to="/login" />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
