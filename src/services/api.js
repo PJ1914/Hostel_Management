@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const getBaseUrl = () => {
+  if (window.location.hostname === 'localhost') {
+    return 'http://localhost:5000';
+  }
+  return 'https://hostelmanagement-production-3eda.up.railway.app';
+};
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: getBaseUrl(),
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -9,8 +16,13 @@ const api = axios.create({
   }
 });
 
-// Add request interceptor for auth token
-api.interceptors.request.use((config) => {
+// Add request logging
+api.interceptors.request.use(config => {
+  console.log('API Request:', {
+    url: config.url,
+    method: config.method,
+    data: config.data
+  });
   const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
