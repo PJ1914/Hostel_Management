@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Hostel Management API' });
 });
 
-// Routes
+// Routes with /api prefix
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);

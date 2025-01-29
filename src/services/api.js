@@ -53,7 +53,7 @@ export const register = async (userData) => {
       password: '****'
     });
     
-    const response = await api.post('/auth/register', userData);
+    const response = await api.post('/api/auth/register', userData);
     console.log('Registration response:', response.data);
     return response;
   } catch (error) {
@@ -68,7 +68,7 @@ export const register = async (userData) => {
 
 export const getNotifications = async () => {
   try {
-    const response = await api.get('/notifications');
+    const response = await api.get('/api/notifications');
     return response;
   } catch (error) {
     console.error('Failed to fetch notifications:', error);
@@ -78,7 +78,7 @@ export const getNotifications = async () => {
 
 export const markNotificationAsRead = async (id) => {
   try {
-    const response = await api.patch(`/notifications/${id}/read`);
+    const response = await api.patch(`/api/notifications/${id}/read`);
     return response;
   } catch (error) {
     console.error('Failed to mark notification as read:', error);
@@ -87,12 +87,12 @@ export const markNotificationAsRead = async (id) => {
 };
 
 export const deleteNotification = (id) => 
-  api.delete(`/notifications/${id}`);
+  api.delete(`/api/notifications/${id}`);
 
 export const createPayment = (paymentData) => 
-  api.post('/payments', paymentData);
+  api.post('/api/payments', paymentData);
 
 export const getPaymentHistory = () => 
-  api.get('/payments/history');
+  api.get('/api/payments/history');
 
 export default api; 
