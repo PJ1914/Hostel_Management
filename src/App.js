@@ -11,12 +11,26 @@ import Signin from './components/Auth/Signin';
 import UserDashboard from './components/Dashboard/User-Dashboard';
 import PaymentForm from './components/Payment/PaymentForm';
 import Notifications from './components/Notification/Notifications';
+import AdminDashboard from './components/Dashboard/AdminDashboard';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       localStorage.getItem('token') ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
+
+const AdminRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      localStorage.getItem('token') && localStorage.getItem('userRole') === 'admin' ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -35,6 +49,7 @@ function App() {
         <PrivateRoute exact path="/dashboard" component={UserDashboard} />
         <PrivateRoute exact path="/payment" component={PaymentForm} />
         <PrivateRoute exact path="/notifications" component={Notifications} />
+        <AdminRoute exact path="/admindashboard" component={AdminDashboard} />
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>

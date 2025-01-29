@@ -96,19 +96,17 @@ body {
 
 .form-control {
   width: 100%;
-  padding: 4% 5%;
-  border: 2px solid transparent;
-  border-radius: 15px;
-  font-size: calc(0.9rem + 0.2vw);
-  background: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-  border-color: #1a2a6c;
-  box-shadow: 0 5px 20px rgba(26, 42, 108, 0.2);
+  border-color: #4a90e2;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
 .signin-button {
@@ -236,4 +234,100 @@ body {
     rgba(255, 255, 255, 0.1) 33%
   );
   background-size: 1000px 100%;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style autocomplete suggestions */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Password field styles */
+.password-field {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle i {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Remove default button styles */
+.password-toggle:focus {
+  outline: none;
+}
+
+/* Adjust input padding to make room for icon */
+.password-field input {
+  padding-right: 35px;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .password-toggle i {
+    color: #999;
+  }
+}
+
+/* Light mode styles */
+@media (prefers-color-scheme: light) {
+  .password-toggle {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .password-toggle:hover {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .password-field .form-control {
+    background: white !important;
+    color: #333 !important;
+  }
 }

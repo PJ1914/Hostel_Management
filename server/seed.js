@@ -21,10 +21,10 @@ const seedData = async () => {
     const admin = new User({
       name: 'Admin User',
       email: 'admin@hostel.com',
-      password: 'admin123', // Will be hashed by mongoose middleware
+      password: 'admin123',
       role: 'admin',
       phoneNumber: '1234567890',
-      roomNumber: 'A101'
+      roomNumber: 'ADMIN'
     });
 
     await admin.save();
@@ -83,10 +83,12 @@ const seedData = async () => {
       parentPhoneNumber: '9876543211',
       password: 'test123',
       role: 'student',
+      status: 'active',
       roomNumber: 'A101',
+      joiningDate: new Date(),
       feeStatus: {
         lastPaid: new Date(),
-        nextDue: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 days from now
+        nextDue: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
         amount: 5000
       }
     });

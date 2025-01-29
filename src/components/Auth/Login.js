@@ -18,25 +18,20 @@ const Login = () => {
     setLoading(true);
 
     try {
-      if (!formData.email || !formData.password) {
-        throw new Error('Email and password are required');
-      }
-
-      console.log('Attempting login with:', {
-        email: formData.email,
-        password: '****' // Don't log actual password
-      });
-
       const response = await login(formData.email, formData.password);
       
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        history.push('/dashboard');
-      } else {
-        throw new Error('No token received');
+        localStorage.setItem('userRole', response.data.user.role);
+        
+        // Redirect based on role
+        if (response.data.user.role === 'admin') {
+          history.push('/admindashboard');
+        } else {
+          history.push('/dashboard');
+        }
       }
     } catch (err) {
-      console.error('Login error:', err);
       setError(
         err.response?.data?.message || 
         err.message || 

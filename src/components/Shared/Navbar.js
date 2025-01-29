@@ -5,6 +5,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const userRole = localStorage.getItem('userRole');
 
   const isActive = (path) => {
     return location.pathname === path;
@@ -63,6 +64,16 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
+          {userRole === 'admin' && (
+            <li className="nav-item">
+              <Link 
+                to="/admindashboard"
+                className={`nav-link ${isActive('/admindashboard') ? 'active' : ''}`}
+              >
+                Admin Dashboard
+              </Link>
+            </li>
+          )}
           {!localStorage.getItem('token') ? (
             <>
               <li className="nav-item">

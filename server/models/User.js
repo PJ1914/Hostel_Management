@@ -4,18 +4,26 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'Name is required'],
+    trim: true
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required'],
     unique: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    validate: {
+      validator: function(v) {
+        return /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(v);
+      },
+      message: props => `${props.value} is not a valid email address!`
+    }
   },
   password: {
     type: String,
-    required: true
+    required: [true, 'Password is required'],
+    minlength: [6, 'Password must be at least 6 characters long']
   },
   role: {
     type: String,
@@ -24,22 +32,22 @@ const userSchema = new mongoose.Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
+    required: [true, 'Phone number is required'],
     validate: {
       validator: function(v) {
         return /^\d{10}$/.test(v);
       },
-      message: 'Please enter a valid 10-digit phone number'
+      message: props => `${props.value} is not a valid 10-digit phone number!`
     }
   },
   parentPhoneNumber: {
     type: String,
-    required: true,
+    required: [true, 'Parent phone number is required'],
     validate: {
       validator: function(v) {
         return /^\d{10}$/.test(v);
       },
-      message: 'Please enter a valid 10-digit parent phone number'
+      message: props => `${props.value} is not a valid 10-digit phone number!`
     }
   },
   parentEmail: {
@@ -68,9 +76,15 @@ const userSchema = new mongoose.Schema({
       default: true
     }
   },
-  joinDate: {
+  joiningDate: {
     type: Date,
+    required: [true, 'Joining date is required'],
     default: Date.now
+  },
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'pending'],
+    default: 'pending'
   }
 }, { timestamps: true });
 

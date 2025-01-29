@@ -60,19 +60,41 @@ export const login = async (email, password) => {
 
 export const register = async (userData) => {
   try {
-    console.log('Registration request payload:', {
+    // Log the request data
+    console.log('Registration request data:', {
       ...userData,
-      password: '****'
+      password: '[HIDDEN]'
     });
+
+    // Validate data before sending
+    const requiredFields = [
+      'name', 'email', 'password', 'phoneNumber', 
+      'parentPhoneNumber', 'parentEmail', 'roomNumber', 'joiningDate'
+    ];
     
+    for (const field of requiredFields) {
+      if (!userData[field]) {
+        throw new Error(`${field} is required`);
+      }
+    }
+
+    // Format joining date
+    if (userData.joiningDate) {
+      userData.joiningDate = new Date(userData.joiningDate).toISOString();
+    }
+
     const response = await api.post('/api/auth/register', userData);
-    console.log('Registration response:', response.data);
+    console.log('Registration response:', {
+      status: response.status,
+      data: response.data
+    });
+
     return response;
   } catch (error) {
-    console.error('API Error:', {
-      message: error.response?.data?.message || error.message,
-      status: error.response?.status,
-      data: error.response?.data
+    console.error('Registration API error:', {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status
     });
     throw error;
   }
@@ -106,5 +128,13 @@ export const createPayment = (paymentData) =>
 
 export const getPaymentHistory = () => 
   api.get('/api/payments/history');
+
+export const getUsers = () => {
+  return api.get('/api/users/students');
+};
+
+export const updateUserStatus = (userId, status) => {
+  return api.patch(`/api/users/${userId}/status`, { status });
+};
 
 export default api; 
