@@ -1,124 +1,218 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Dashboard Container */
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  padding: 3%;
+  backdrop-filter: blur(10px);
+}
+
+.dashboard-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  padding: 3%;
+  margin-bottom: 3%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.dashboard-header:hover {
+  transform: translateY(-5px) rotateX(2deg);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-header h1 {
+  color: #1a2a6c;
+  font-size: calc(2rem + 1vw);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2%;
+  position: relative;
+}
+
+.dashboard-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+}
+
+.dashboard-section {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  padding: 3%;
+  margin-bottom: 3%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-section h2 {
+  color: #1a2a6c;
+  font-size: calc(1.5rem + 0.5vw);
+  font-weight: 600;
+  margin-bottom: 4%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.notifications-list,
+.bookings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-item,
+.booking-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 3%;
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.notification-item:hover,
+.booking-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.action-button {
+  padding: 2% 4%;
+  border: none;
+  border-radius: 10px;
+  font-size: calc(0.8rem + 0.2vw);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dismiss-button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+}
+
+.cancel-button {
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f);
+  color: white;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.empty-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  font-size: calc(0.9rem + 0.2vw);
+  margin: 5% 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .dashboard-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5%;
   }
-  
-  /* Header Section */
-  .dashboard-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-header h1 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .dashboard-header p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  /* Section Styles */
-  .dashboard-section {
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-section h2 {
-    font-size: 1.5rem;
-    color: #444;
-    margin-bottom: 10px;
-  }
-  
-  /* Notifications and Bookings List */
-  .notifications-list,
-  .bookings-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
+
   .notification-item,
   .booking-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
-  
-  /* Buttons */
+
   .action-button {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 100%;
+    padding: 3% 0;
   }
-  
-  .dismiss-button {
-    background-color: #ff6666;
+}
+
+@media (max-width: 480px) {
+  .dashboard-header h1 {
+    font-size: calc(1.5rem + 1vw);
+  }
+
+  .dashboard-section h2 {
+    font-size: calc(1.2rem + 0.5vw);
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(45deg, #000428, #004e92);
+  }
+
+  .dashboard-header,
+  .dashboard-section {
+    background: rgba(20, 30, 48, 0.95);
+  }
+
+  .dashboard-header h1,
+  .dashboard-section h2 {
     color: #fff;
   }
-  
-  .dismiss-button:hover {
-    background-color: #ff4d4d;
-  }
-  
-  .cancel-button {
-    background-color: #007bff;
+
+  .notification-item,
+  .booking-item {
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
   }
-  
-  .cancel-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Empty Message */
+
   .empty-message {
-    color: #888;
-    font-style: italic;
+    color: #ccc;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard-container {
-      padding: 15px;
-    }
-  
-    .dashboard-header h1 {
-      font-size: 1.5rem;
-    }
-  
-    .dashboard-header p {
-      font-size: 0.9rem;
-    }
-  
-    .notification-item,
-    .booking-item {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .action-button {
-      margin-top: 10px;
-      width: 100%;
-    }
-  }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+.loading {
+  animation: shimmer 1s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 8%,
+    rgba(255, 255, 255, 0.2) 18%,
+    rgba(255, 255, 255, 0.1) 33%
+  );
+  background-size: 1000px 100%;
+}
   

@@ -1,0 +1,239 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.signin-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3%;
+  backdrop-filter: blur(10px);
+}
+
+.signin-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  padding: 5%;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.signin-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.signin-box:hover::before {
+  left: 100%;
+}
+
+.signin-box:hover {
+  transform: translateY(-5px) rotateX(5deg);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+}
+
+.signin-title {
+  color: #1a2a6c;
+  text-align: center;
+  margin-bottom: 8%;
+  font-size: calc(1.8rem + 1vw);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.signin-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 7%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 4% 5%;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  font-size: calc(0.9rem + 0.2vw);
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus {
+  border-color: #1a2a6c;
+  box-shadow: 0 5px 20px rgba(26, 42, 108, 0.2);
+  outline: none;
+}
+
+.signin-button {
+  width: 100%;
+  padding: 4% 0;
+  border: none;
+  border-radius: 15px;
+  font-size: calc(1rem + 0.2vw);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(26, 42, 108, 0.2);
+  margin-top: 3%;
+}
+
+.signin-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(26, 42, 108, 0.3);
+  background: linear-gradient(45deg, #b21f1f, #1a2a6c);
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 8%;
+  color: #666;
+  font-size: calc(0.9rem + 0.2vw);
+}
+
+.signup-link a {
+  color: #1a2a6c;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.signup-link a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+  transition: width 0.3s ease;
+}
+
+.signup-link a:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signin-box {
+    width: 95%;
+    padding: 8%;
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-box {
+    width: 98%;
+    padding: 10%;
+  }
+
+  .signin-title {
+    font-size: calc(1.3rem + 1vw);
+    margin-bottom: 12%;
+  }
+
+  .form-group {
+    margin-bottom: 9%;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(45deg, #000428, #004e92);
+  }
+
+  .signin-box {
+    background: rgba(20, 30, 48, 0.95);
+  }
+
+  .signin-title {
+    color: #fff;
+  }
+
+  .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .form-control:focus {
+    border-color: #004e92;
+  }
+
+  .signup-link {
+    color: #ccc;
+  }
+
+  .signup-link a {
+    color: #fff;
+  }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+.loading {
+  animation: shimmer 1s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 8%,
+    rgba(255, 255, 255, 0.2) 18%,
+    rgba(255, 255, 255, 0.1) 33%
+  );
+  background-size: 1000px 100%;
+}

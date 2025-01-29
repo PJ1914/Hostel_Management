@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './User-Dashboard.css'; // Import the CSS file
+import './User-Dashboard.css'; 
 
 const UserDashboard = () => {
   const [notifications, setNotifications] = useState([]);
